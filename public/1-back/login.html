@@ -5,11 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>乐淘电商</title>
-  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-theme.css">
+  <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="lib/bootstrap-validator/css/bootstrapValidator.min.css">
+  <link rel="stylesheet" href="css/common.css">
 </head>
-<body>
-  <h1>我是登录页</h1>
+<body class="body_bg">
+  <!--
+  xx-primary  深蓝色
+  xx-default  灰白色
+  xx-danger   红色
+  xx-success  绿色
+
+  xx-info     浅蓝色
+  xx-warning  黄色
+-->
+
+  <!-- 空间分配 大屏占4份 -->
+  <div class="container">
+    <div class="col-lg-4 clo-lg-offset-4">
+      <div class="panel  panel-primary mt_150">
+        <div class="panel-heading">
+          <h3 class="panel-title panel-primary">后台管理系统</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" name="form" id="form">
+                <div class="form-group">
+                  <label for="username" class="col-sm-3 control-label">用户名</label>
+                  <div class="col-sm-9">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="用户名">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password" class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                  <div class="col-sm-9">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="密码">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-6">
+                    <button type="reset" class="btn btn-default pull-left">重置</button>
+                    <button type="submit" class="btn btn-primary pull-right">登录</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="lib/jquery/jquery.js"></script>
   <script src="lib/bootstrap/js/bootstrap.js"></script>
+  <script src="lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>
