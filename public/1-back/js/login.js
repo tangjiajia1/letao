@@ -25,6 +25,10 @@ $("#form").bootstrapValidator({
           min:2,
           max:6,
           message:"用户名不能超过2-6位"
+        },
+        //callback 专门用来配置回调的message
+        callback:{
+          message:"用户名不存在"
         }
       }
     },
@@ -39,6 +43,9 @@ $("#form").bootstrapValidator({
           min:6,
           max:12,
           message:"密码不能超过6-12位"
+        },
+        callback:{
+          message:"密码错误"
         }
       }
     }
@@ -54,21 +61,31 @@ $("#form").bootstrapValidator({
 $("#form").on("success.form.bv",function(e){
   // return false 没有语义性
   e.preventDefault();
-
-  console.log("默认行为被阻止了，要通过ajax提交");
+  // console.log("默认行为被阻止了，要通过ajax提交");
 
   $.ajax({
-    type:"get",
-    url:"/employee/employeeLogout",
+    type:"post",
+    url:"/employee/employeeLogin",
     data:$("#form").serialize(),
     dataType:"json",
     success:function(info){
       console.log(info);
       if(info.error==1000){
-        aleret("用户名不存在");
+        /**
+         * 更新当前input的效验转态
+         * updateStatus（filed,status,validator）
+         * file 字段名 password username
+         * status 状态：INVALID(效验失败) NOT—_VALIDATED（未校验） VALIDATING(效验中)
+         * validator 配置效验规则,如果没有效验规则，会显示所有错误
+         */
+  
+        $("#form").data("bootstrapValidator").updateStatus("username", "INVALID","callback");
+        return ;
       }
       if(info.error==1001){
-        alert("密码错误");
+        // 错误提示
+        $("#form").data("bootstrapValidator").updateStatus("password","INVALID","callback");
+        return ;
       }
       if(info.success){
         //登录成功
