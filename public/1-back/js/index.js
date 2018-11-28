@@ -16,7 +16,7 @@ var option1 = {
     },
     //x轴
     xAxis: {
-        data: ["耐克","阿迪","李宁","特别","花花公子","360"]
+        data: ["1月","2月","3月","4月","5月","6月"]
     },
     // y轴的数据刻度, 需要通过数据的值, 动态生成
     yAxis: {},
@@ -34,7 +34,7 @@ var option1 = {
 };
 
 // 使用刚指定的配置项和数据显示图表。
-myChart.setOption(option1);
+echarts_left.setOption(option1);
 
 // 饼图
 
@@ -54,14 +54,14 @@ var option2 = {
     },
     legend: {
         orient: 'vertical',
-        left: 'left',
+        left: 'right',
         data: ["耐克","阿迪","李宁","特别","花花公子","360"]
     },
     series : [
         {
             name: '访问来源',
             type: 'pie',
-            radius : '55%',
+            radius : '50%',
             center: ['50%', '60%'],
             data:[
                 {value:335, name:'耐克'},
@@ -83,6 +83,6 @@ var option2 = {
 };
 
 // 使用刚指定的配置项和数据显示图表。
-myChart.setOption(option2);
+echarts_right.setOption(option2);
 
 

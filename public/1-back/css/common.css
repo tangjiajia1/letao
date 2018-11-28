@@ -15,6 +15,9 @@
 
   margin-top:20px
 }
+.mb_20{
+  margin-bottom: 20px;
+}
 *{
 margin:0;
 padding:0;
@@ -36,7 +39,11 @@ a:active {
   left:0;
   top:0;
   z-index:999;
+  transition:all 1s;
   
+}
+.le_aside.hidemun{
+  left:-180px;
 }
 .le_aside .bland{
   width:100%;
@@ -85,7 +92,7 @@ a:active {
 .le_aside .nav a i{
 margin-right:5px;
 }
-.le_aside .nav a.action{
+.le_aside .nav li.action{
   background-color: #1D1F21;
   border-left: 3px solid #069;
 }
@@ -94,7 +101,10 @@ margin-right:5px;
   width:100%;
   height:100%;
   padding:50px 0 0 180px;
-  
+  transition:all 1s; 
+}
+.le_main.hidemun{
+  padding-left:0;
 }
 
 /* 头部*/
@@ -108,6 +118,11 @@ margin-right:5px;
   padding-left:180px;
   box-sizing:border-box;
   z-index: 998; 
+  transition:all 1s;
+}
+/* 左侧按钮功能 */
+.le_topbar.hidemun{
+  padding-left:0;
 }
 .le_topbar .le_left,
 .le_topbar .le_right{
@@ -118,7 +133,9 @@ margin-right:5px;
   font-size:20px;
   color:#fff;
 }
+
 /* 图标区域 */
+
 .echarts_left{
 width:48%;
 height:400px;
@@ -128,3 +145,15 @@ height:400px;
   width:48%;
   height:400px;
 }
+
+/* 用户表格功能 */
+.table.table-bordered td, .table.table-bordered th{
+  text-align:center;
+  vertical-align: middle;
+}
+.table tbody td img{
+ width:50px;
+ height:50px;
+
+}
+
