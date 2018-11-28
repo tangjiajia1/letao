@@ -1,7 +1,6 @@
 .body_bg {
   background-color: #222D32;
 }
-
 .panel-title {
   height: 40px;
   line-height: 40px;
@@ -11,4 +10,121 @@
 
 .mt_150 {
   margin-top: 150px;
+}
+.mt_20{
+
+  margin-top:20px
+}
+*{
+margin:0;
+padding:0;
+list-style:none;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+/* 侧边栏 */
+.le_aside{
+  width:180px;
+  height:100%;
+  background-color: #222D32;
+  position: fixed;
+  left:0;
+  top:0;
+  z-index:999;
+  
+}
+.le_aside .bland{
+  width:100%;
+  height:50px;
+  text-align:center;
+  line-height: 50px;
+  color:#fff ;
+  font-size:25px;
+  background-color: #367FA9;
+}
+.le_aside .user{
+  width:100%;
+  height:150px;
+  padding-top:30px;
+  box-sizing:border-box;
+  text-align:center;
+}
+.le_aside .user img{
+  width:80px;
+  height:80px;
+  border-radius: 50%;
+}
+.le_aside .user p{
+  height:40px;
+  color:#fff;
+  line-height:40px;
+  font-size:18px;
+}
+.le_aside .nav{
+  width:100%;
+  margin-top:30px;
+}
+.le_aside .nav ul li a{
+  border-left:3px solid transparent;
+  padding-left:40px;
+  box-sizing: border-box;
+  color:#fff;
+  display:block;
+  height:40px;
+  line-height:40px;
+}
+
+.le_aside .nav ul li ol li a{
+  padding-left:60px;
+}
+.le_aside .nav a i{
+margin-right:5px;
+}
+.le_aside .nav a.action{
+  background-color: #1D1F21;
+  border-left: 3px solid #069;
+}
+/* 主体 */
+.le_main{
+  width:100%;
+  height:100%;
+  padding:50px 0 0 180px;
+  
+}
+
+/* 头部*/
+.le_topbar{
+  width:100%;
+  height:50px;
+  background-color:#3C8DBC;
+  position: fixed;
+  top:0;
+  left:0;
+  padding-left:180px;
+  box-sizing:border-box;
+  z-index: 998; 
+}
+.le_topbar .le_left,
+.le_topbar .le_right{
+  width:50px;
+  height:50px;
+  text-align:center;
+  line-height:50px;
+  font-size:20px;
+  color:#fff;
+}
+/* 图标区域 */
+.echarts_left{
+width:48%;
+height:400px;
+
+}
+.echarts_right{
+  width:48%;
+  height:400px;
 }
