@@ -64,7 +64,7 @@ $(".le_left").click(function(){
    $("#myModal").modal("show");
  })
 
- $(".modal-footer button:last-child").click(function(){
+ $("#back").click(function(){
    $.ajax({
      type:"get",
      url:"/employee/employeeLogout",

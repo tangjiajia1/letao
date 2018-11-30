@@ -24,7 +24,7 @@
       <ul>
         <li><a href="user.html"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
         <li class="category"><a href="javascript:;"><i class="glyphicon glyphicon-list"></i>分类管理</a>
-          <ol style="display:none">
+          <ol>
             <li class="action"><a href="first.html">一级分类</a></li>
             <li><a href="second.html">二级分类</a></li>
           </ol>
@@ -48,40 +48,47 @@
           <li class="active">分类管理</li>
           <li class="active">一级分类</li>
         </ol>
+        <button class="btn btn-primary btn-add mb_20">添加分类</button>
         <!-- 表格 -->
-        <button class="btn btn-primary mb_20">添加分类</button>
         <table class="table table-bordered">
           <thead>
-            <th>序号</th>
-            <th>一级分类类名</th>
+            <th style="width:20%">序号</th>
+            <th style="width:80%">一级分类类名</th>
           </thead>
           <tbody>
-            <!-- <tr>
-              <td>1</td>
-              <td>商务管理</td>
-            </tr> -->
+            <!-- 模板渲染 -->
           </tbody>
         </table>
         <!-- 分页标签 -->
-        <nav class="pull-right">
-            <ul class="pagination">
-              <li>
-                <a href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li>
-                <a href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <div class="page-right pull-right">
+            <ul id="pagintor"></ul>
+          </div>
+
+          <!-- 添加分类模态框 -->
+          <div class="modal fade" id="firstModal" tabindex="-1" aria-hidden="true">
+            <!-- 模态框 -->
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">添加分类</h4>
+                </div>
+                <div class="modal-body">
+                  <form id="form" class="form-inline">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="textInput" name="categoryName" placeholder="请输入一级分类">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                   <!-- html5 新增 form 属性, 可以让表单外的按钮, 与表单关联起来(就相当于是写在了表单里面)-->
+                  <button type="submit" class="btn btn-primary pull-right" form="form" id="addBtn">添加</button>
+                </div>
+              
+              </div>
+            </div>
+          </div>
   </div>
 </div>
 <!-- 模态框 
@@ -109,21 +116,22 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary">退出</button>
+            <button type="button" class="btn btn-primary" id="back">退出</button>
           </div>
         </div>
       </div>
     </div>
 
-<!-- 模板 -->
-<script type="text/html" id="tmp">
-  {{each list v i}}
-    <tr>
-       <td>{{i+1+(page-1)*size}}</td>
-       <td>{{v.rows}}}</td>
-    </tr>
-  {{/each}}
-</script>
+    <!--模板引擎 -->
+    <script type="text/html" id="tmp">
+      {{ each rows v i }}
+        <tr>
+         <!-- 前面有多少页*一页多少条 + (i+1) -->
+          <td>{{ (page-1)*size + i+1 }}</td>
+          <td>{{ v.categoryName }}</td>
+        </tr>
+      {{/each}}
+    </script>
 
   <script src="./lib/jquery/jquery.min.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
@@ -131,6 +139,7 @@
   <script src="./lib/nprogress/nprogress.js"></script>
   <script src="./lib/echarts/echarts.min.js"></script>
   <script src="lib/artTemplate/template-web.js"></script>
+  <script src="lib/bootstrap-paginator/bootstrap-paginator.js"></script>
   <script src="js/commit.js"></script>
   <script src="js/isLogin.js"></script>
   <script src="js/first.js"></script>
