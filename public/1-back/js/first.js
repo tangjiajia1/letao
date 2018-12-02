@@ -25,7 +25,7 @@ function rander(){
         //给页码添加点击事件
         onPageClicked:function(a,b,c,page){
           //将选中的页码更新到currentPage
-          currentPage:page;
+          currentPage=page;
           rander();
         }
       })

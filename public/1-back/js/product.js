@@ -31,11 +31,10 @@ $(function () {
           totalPages: Math.ceil(info.total / info.size),
           //给页码添加点击事件
           onPageClicked: function (a, b, c, page) {
-            currentPage: page;
+            currentPage= page;
             render();
           }
         })
-
       }
     })
   };
@@ -69,7 +68,7 @@ $(function () {
    
       $(".dropdown-menu").on("click","a",function(){
         var txt=$(this).text();
-        var id=$(this).data(id);
+        var id=$(this).data('id');
         $("#spanText").text(txt);
         // 设置隐藏域
         $("[name='brandId']").val(id);
@@ -85,9 +84,11 @@ $(function () {
        $("#fileupload").fileupload({
          dataType:"json",
          done:function(e,data){
-          console.log(data);
+           console.log(data);
+           
           //获取图片地址对象
           var picObj=data.result;
+          console.log(picObj);
           //得到图片地址
           var picAddr=picObj.picAddr;
 
@@ -95,11 +96,11 @@ $(function () {
           picArr.unshift(picObj);
           //新得到的图片 应该添加到imgBox最前面
           $("#imgBox").prepend('<img src="'+picAddr+'" width="100">');
-          //如果上传的图片个数大于3个，需要将最旧的那个删除
+          //如果上传的图片个数大于3个，需要将最后的那个删除
           if(picArr.length>3){
             picArr.pop();
             //除了删除数组的最后一项 还需要将页面中渲染的最后一张图片删掉
-            // 通过 :last-of-type 找到imgBox盒子中最后一个 img 类型的标签, 让他自杀
+            // 通过 :last-of-type 找到imgBox盒子中所有img类型中的最后一个 img 类型的标签, 让他自杀
             $("#imgBox img:last-of-type").remove();
             
           }
@@ -188,8 +189,8 @@ $(function () {
                 message:"请输入商品尺码"
               },
               regexp:{
-                regexp:/^[34-45]\d*$/,
-                message:"鞋码必须是34-45"
+                regexp: /^\d{2}-\d{2}$/,
+                message:"鞋码必须是xx-xx格式"
               }
             }
           },
@@ -220,10 +221,11 @@ $(function () {
          }
        });
        //6注册成功事件
-       $("#form").on("success.form.vb",function(e){
+       //提交数据通过提交数组
+       $("#form").on("success.form.bv", function( e ) {
           e.preventDefault();
           //表单提交得到的参数字符串
-          var params=$("form").serialize();
+          var params = $('#form').serialize(); 
           /**
            * 需要在参数的基础上拼接这些参数
            * &picName1=xx&picAddr1=xx
@@ -233,20 +235,32 @@ $(function () {
           params+="&picName1="+picArr[0].picName+"&picAddr1="+picArr[0].picAddr;
           params+="&picName2="+picArr[1].picName+"&picAddr2="+picArr[1].picAddr;
           params+="&picName3="+picArr[2].picName+"&picAddr3="+picArr[2].picAddr;
-          console.log(params);
+          console.log($('#form').serialize());
+      
+      
           $.ajax({
             type:"post",
             url:"/product/addProduct",
-            data:"params",
+            data: params,
             dataType:"json",
             success:function(info){
               console.log(info);
-              // if(info.success){
-              //   //关闭模态框
-              //   $("#addModal").modal("hide");
-              //   //重置 校验状态和文本内容
-              //   $("#form").data("bootstrapValida").resetForm(true);
-              // }
+              if(info.success){
+                //关闭模态框
+                $("#addModal").modal("hide");
+                 //重新渲染到第一页
+                 currentPage=1;
+                 render();
+ 
+                //重置 校验状态和文本内容
+                $('#form').data("bootstrapValidator").resetForm(true);
+               
+                //手动重置下来菜单
+                $("#spanText").text("请选择二级分类");
+                //删除结构汇总的所有图片
+                $("#imgBox img").remove();
+                picArr=[];
+              }
             }
           })
        })

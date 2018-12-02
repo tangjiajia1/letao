@@ -27,7 +27,7 @@ $(function () {
           totalPage: Math.ceil(info.total / info.size),
           //给每个页码注册点击事件
           onPageClicked: function (a, b, c, page) {
-            currentPage: page;
+            currentPage= page;
             render();
           }
         })
