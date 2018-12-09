@@ -116,3 +116,48 @@ body {
 .footer a.active {
   color: orange;
 }
+.search {
+  padding: 10px;
+  position: relative;
+}
+.search input {
+  width: 100%;
+  height: 34px;
+  font-size: 15px;
+  text-align: left;
+  border: 1px solid #007AFF;
+  border-radius: 5px;
+  margin-bottom: 0;
+}
+.search button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.histroy {
+  width: 100%;
+  padding: 10px;
+}
+.histroy .title {
+  height: 30px;
+  line-height: 30px;
+  font-size: 13px;
+}
+.histroy .title a {
+  color: #666;
+}
+.histroy ul {
+  border: 1px dashed red;
+}
+.histroy ul li {
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px dashed red;
+  padding: 0 10px;
+}
+.histroy ul li li:last-child {
+  border-bottom: none;
+}
+.histroy ul li li:last-child a {
+  display: block;
+}
